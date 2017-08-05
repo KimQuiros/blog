@@ -14687,6 +14687,8 @@ header {
 
 .blogs-categories {
   padding: 80px 0; }
+  .blogs-categories .list-categories .col-xs-12 {
+    margin-bottom: 15px; }
   .blogs-categories .list-categories .c1 {
     background-image: url(../img/c1.jpg); }
   .blogs-categories .list-categories .c2 {
@@ -14874,7 +14876,7 @@ header {
  */
 footer.page-footer {
   padding: 20px 0 0;
-  background-color: #235844 !important; }
+  background-color: #229e24 !important; }
   footer.page-footer .container-fluid {
     padding-bottom: 20px; }
 
