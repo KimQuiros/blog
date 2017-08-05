@@ -1,0 +1,21 @@
+/*
+ * Skin/contacto
+ */
+
+footer.page-footer {
+    padding: 20px 0 0;
+    background-color: $defaultDarkColor!important;
+    .container-fluid{
+    	padding-bottom: 20px;
+    }
+}
+
+footer.page-footer a {
+    line-height: 30px;
+}
+
+footer{
+	.column-title {
+		font-family: $title;
+	}
+}

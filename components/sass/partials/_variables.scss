@@ -1,0 +1,30 @@
+/*----------Indice----------
+		#colors
+		#tipography
+		#max-width
+		#padding-left-and-right-of-the-header
+*/
+//	#Typography
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans|Open+Sans');
+
+$title: 'Josefin Sans', sans-serif;
+$body: 'Open Sans', sans-serif;
+
+//	#colors
+$white: #fff;
+$black: #111;
+$background: #f4f4f4;
+$textColor: #868686;
+
+$borderColor: #5d5d5d;
+$backgroundColor: $borderColor;
+
+$defaultColor: #27C42A;
+$defaultDarkColor:#235844;
+$darkColor: #252531;
+
+$base: 420px;
+$small: 600px;
+$medium: 900px;
+$large: 1000px;
+$big:1200px;

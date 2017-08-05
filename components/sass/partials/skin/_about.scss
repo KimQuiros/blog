@@ -1,0 +1,20 @@
+.blogs-categories{
+	background-color: $background;
+	.text-content{
+		text-align: right;
+	}
+	.list-categories{
+		.img-background{
+			a{
+				span{
+					@include textBreak();
+					background-color:$defaultColor;
+					color: $white;
+					font-size: 18px;
+					font-family: $title;
+					padding: 5px;
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,132 @@
+@import "../../proyecto/include";
+
+/* === FORMS === */
+$lebasic : 'Roboto', Arial, Helvetica, sans-serif;
+
+@mixin dotheBorder($color: $borderlight){
+    border: 1px solid $color;
+    &:hover {
+        border-color: darken($color, 15%);
+        @include box-shadow(0, 0, 15px, 0, rgba($color, .40));
+    }
+    &:focus {
+        border-color: darken($color, 40%);
+        @include box-shadow(0, 0, 15px, 0, rgba($dark, .25));
+    }
+}
+@mixin formStyle {
+    background-color: $white;
+    height: auto;    
+    color: $textcolor;
+    @include dotheBorder($borderlight);
+    @include pad(10px 20px);
+    @include box-shadow-none;
+    @include border-radio(2px);
+    @include size($pixeles);
+    &:hover {
+        // some code
+    }
+    &:focus {
+        // some code
+    }
+}
+
+form {
+    textarea {
+        resize: vertical;
+    }
+}
+
+input, textarea {
+    @include placeholder($lebasic, 12px, darken($light, 15%), none, left, 300, normal);
+} 
+.form-control, input[type="tel"], input[type="email"], textarea, select, input[type="number"], input[type*="text"] {
+    width: 100%;
+    @include formStyle;
+} 
+
+
+.form-group{
+    @include mar(0 auto 15px);
+    max-width: 520px;
+}
+.form-group {
+    label {
+        font-weight: 300;
+    }
+}
+
+.form-control, input, input[type="tel"], input[type="email"], textarea, select, input[type="number"] {
+    width: 100%;
+    @include formStyle;
+} 
+select {
+    -webkit-appearance: menulist !important;       
+    option {
+        @include size(13px);
+    }
+}
+input[type="checkbox"], input[type="radio"] {
+    height: auto;
+}
+
+/* errores */
+.form-group.has-error {
+    .form-control, input, input[type="tel"], input[type="email"], textarea, select, input[type="number"] {
+        border-color: $danger;
+    }
+}
+
+
+div[class*="error"] {
+    // MENSAJES DE ERROR
+    span[class*="help"] {
+        text-align: left;
+        color: $danger;
+        @include mar(5px 0 0);
+        @include size(11px);
+    }
+
+    .form-control, input, input[type="tel"], input[type="email"], textarea, select, input[type="number"] {
+        border-color: $danger;
+    }
+
+    div[class*="input-group"] {
+        .input-group-addon {
+            background: lighten($danger, 40%);
+            border-color: $danger;
+            i {
+                color: $danger;
+            }
+        }
+        .form-control {
+            border-color: $danger;
+        }
+    }
+}
+
+
+.radio-inline + .radio-inline {
+    @include mar(0);
+}
+
+.radio-inline + .radio-inline, .radio-inline  {
+    margin-right: 20px;
+}
+
+
+
+label {
+    @include mar(0);
+    display: inline-block;
+}
+
+input[type="text"], input[type="email"], textarea, .form-control, select  {
+    @include formStyle;
+    max-width: 600px;
+    width: 100%;
+    @media screen and (max-width: 620px) {
+        width: 100%;
+        max-width: none;
+    }
+}

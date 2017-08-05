@@ -1,0 +1,21 @@
+
+
+/* Elimina el hover default de un navbar */
+@mixin killDefault {
+    &:hover, &:active, &:focus {
+        @include nobg;
+        color: inherit;
+        a {
+            @include nobg;
+            color: inherit;
+        }
+    }
+
+    > li {
+        a {
+            &:focus, &:hover {
+                @include nobg;
+            }
+        }        
+    }
+}

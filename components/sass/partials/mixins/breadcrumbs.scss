@@ -1,0 +1,71 @@
+/*
+-------------- BREADCRUMBS -------------- 
+01 = $bc-link:       => COLOR
+02 = $bc-current     => COLOR CURRENT
+03 = $bc-current-bg  => COLOR DEL BG CURRENT
+04 = $bc-hover       => COLOR HOVER
+05 = $bc-hover-bg    => BACKGROUND DEL HOVER
+06 = $bc-bg-color    => BACKGROUND DE LOS BREADCRUMBS GLOBAL
+07 = $bc-font        => FONT DEL BREADCRUMB
+08 = $bc-size        => TAMAÑO PIXELES == default : $pixeles, 
+09 = $bc-pad         => PADDING
+10 = $bc-mar         => MARGIN
+11 = $fa-mar         => AWESOME FONT MARGEN
+12 = $dec-1          => TEXT DECORATION 1
+13 = $dec-2          => TEXT DECORATION 2
+*/
+
+@mixin breadcrumbs(
+$bc-link        : $colorbase,
+$bc-current     : $colorfull, 
+$bc-current-bg  : transparent,
+$bc-hover       : $red, 
+$bc-hover-bg    : $colorbase,
+$bc-bg-color    : transparent, 
+$bc-font        : $font, 
+$bc-size        : $pixeles, 
+$bc-pad         : 0, 
+$bc-mar         : 0 10px 0 0, 
+$fa-mar         : 0 5px 0 0, 
+$dec-1          : underline,
+$dec-2          : underline)
+{
+    list-style: none;
+    margin-bottom: 0;
+    @include pad(0 0 0 25px);
+    > li {
+        line-height: normal;
+        list-style: none;   
+        display:  inline-block;
+
+        a {
+            background-color: $bc-bg-color;
+            display: inline-block;
+            font-family: $bc-font;
+            font-size: $bc-size;
+            color: $bc-link;
+            margin: $bc-mar;
+            padding: $bc-pad;
+
+            i {
+                margin: $fa-mar;
+                position: relative;
+                top: -1px;
+            }
+            &:hover, &:active, &:focus {
+                color: $bc-hover;
+                background-color: $bc-hover-bg;
+                text-decoration: $dec-1;
+            }
+        }
+    }
+   
+    > li.current {
+        a {
+            color: $bc-current;
+            background: $bc-current-bg;
+            text-decoration: none;
+            cursor: default;
+        }
+    }
+}

@@ -1,0 +1,20 @@
+@mixin Material($pos: absolute, $size:24px, $pad: 0) {
+    position: $pos;
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: $size;  /* Preferred icon size */
+    display: inline-block;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    -moz-transform: translateX(0) translateY(0);
+    -webkit-transform: translateX(0) translateY(0);
+    -o-transform: translateX(0) translateY(0);
+    -ms-transform: translateX(0) translateY(0);
+    transform: translateX(0) translateY(0);
+}
+@mixin MaterialIcon($icon: '\E420') {
+    content: $icon ; 
+}

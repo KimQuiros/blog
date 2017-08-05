@@ -1,0 +1,40 @@
+/*
+ * Skin/about
+ */
+.post-blog{
+	padding:90px 0;
+	.cat-post{
+		a{
+			position:relative;
+			z-index: 1;
+			left: 0;
+			top: 2px;
+			h3{
+				text-align: left;
+				margin-top: 9px;
+				width: 129px;
+				margin-bottom: 0;
+			}
+			}
+	}
+	.news-content{
+    background-image: url(img/post.jpg);
+    height: 240px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    position: relative;
+    &:before{
+				content: "";
+				position:absolute;
+				background: rgba(0, 0, 0, 0.2);
+				width: 100%;
+				height: 97%;
+				top: 0;
+			}
+    .text-content{
+    	position:absolute;
+    	bottom: 0;
+    	padding: 15px;
+    }
+	}
+}

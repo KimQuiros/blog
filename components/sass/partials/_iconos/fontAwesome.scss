@@ -1,0 +1,12 @@
+@mixin awesome($pos: absolute, $size:100%, $pad: 0) {
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    font-size: $size;
+    padding: $pad;
+    position: $pos;
+}
+@mixin aweIcon($icon: "\f069") {
+    content: $icon ; 
+}

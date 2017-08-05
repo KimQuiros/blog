@@ -1,0 +1,28 @@
+header{
+	position:relative;
+}
+.content-cover{
+	background: url(../img/cover.jpg);
+	background-size: cover;
+	background-attachment: fixed;
+	height: 100vh;
+	&:after{
+		content: "";
+		position:absolute;
+		background-color: rgba(0, 0, 0, 0.3);
+		width: 100%;
+		height: 100%;
+		top: 0;
+	}
+	.cover-header{
+		position: relative;
+		z-index: 1;
+		margin: 0 auto;
+		text-align: center;
+		top: 25%;
+		width: 665px;
+		h1{
+			margin-bottom: 10px;
+		}
+	}
+}

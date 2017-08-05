@@ -1,0 +1,61 @@
+@mixin table(
+/* 1 */ $bgcolor: transparent,
+/* 2 */ $border: $gray,
+/* 3 */ $caption: $black
+) {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    background-color: $bgcolor;
+    border: 1px solid $border;
+    > thead > tr > th,
+    > tbody > tr > th,
+    > tfoot > tr > th,
+    > thead > tr > td,
+    > tbody > tr > td,
+    > tfoot > tr > td {
+        padding: 8px;
+        line-height: 1.42857143;
+        vertical-align: top;
+        border-top: 1px solid $border;
+    }
+
+    > thead > tr > th {
+        vertical-align: bottom;
+        border-bottom: 2px solid $border;
+    }
+    > caption + thead > tr:first-child > th,
+        > colgroup + thead > tr:first-child > th,
+        > thead:first-child > tr:first-child > th,
+        > caption + thead > tr:first-child > td,
+        > colgroup + thead > tr:first-child > td,
+        > thead:first-child > tr:first-child > td {
+        border-top: 0;
+    }
+    > tbody + tbody {
+        border-top: 2px solid $border;
+    }
+
+
+    > thead > tr > th,
+    > tbody > tr > th,
+    > tfoot > tr > th,
+    > thead > tr > td,
+    > tbody > tr > td,
+    > tfoot > tr > td {
+        border: 1px solid $border;
+    }
+    > thead > tr > th,
+    > thead > tr > td {
+        border-bottom-width: 2px;
+    }
+    caption {
+        padding-top: 8px;
+        padding-bottom: 8px;
+        color:  $caption;
+        text-align: left;
+    }
+    th {
+        text-align: left;
+    }
+}

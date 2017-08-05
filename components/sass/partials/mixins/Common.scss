@@ -1,0 +1,747 @@
+
+@mixin selection($bg:$colorbase, $color:$white) { 
+    ::selection { background: $bg; color:$color; @include text-shadow(none);} /* webkit */
+    ::-moz-selection { background: $bg; color:$color; @include text-shadow(none); } /* Moz */
+}
+
+/* Variables COlor  */
+$default  : #FFCC00;
+$colorbase: #EEEEEE;
+$colorfull: #336688;
+$textcolor: #666666;
+$white    : #ffffff;
+$black    : #000000;
+$gray     : #CCCCCC;
+$light    : darken($white, 8%);
+$darkgray : #333333;
+$red      : #FF0000;
+$yellow   : #ffff00;
+$blue     : #0033ff;
+$green    : #33ff00;
+$cyan     : #00b9ff;
+$orange   : #ff6600;
+$baum     : #62b446;
+$font     : arial, Helvetica, sans-serif;
+$pixels   : 13px;
+$danger   : #d9534f;
+$tahoma   : tahoma, Geneva, sans-serif;
+$nobg     : transparent;
+
+$facebook   : #3A5795; // Color facebook
+$twitter    : #00B6F1; // Color Twitter
+$instagram  : #125688; // Color instagram 
+$linkedin   : #006699; // Color Linkedin
+$youtube    : #CC181E; // Color Youtube
+$pinterest  : #cb2027; // Color Pinterest
+$google     : #dd4b39; // Color Google Plus
+$dropbox    : #007ee5; // Color DropBox
+$google-map : #4285F4; // Color Google Map
+$waze       : #92c2d1; // Color Waze   
+$flickr     : #FF0084; // Color Flickr
+$pdf        : #E84C3D; // Color PDF
+
+
+/* === COMMON SNIPPETS - MIXINS === */
+@mixin nobg { background: none; }
+@mixin size($valor) { font-size: $valor; }
+@mixin pad($valor:5px)  { padding:$valor;}
+@mixin mar($valor)  { margin: $valor;}
+@mixin clearfix { *zoom: 1; &:before, &:after { content: " "; display: table; line-height: 0; } &:after { clear: both; } }
+
+/* Body */
+@mixin htmlBasic {
+    min-height: 100%;
+    position: relative;   
+}
+@mixin bodyBasic {
+    height: auto;   
+}
+
+/* Footer basic */
+@mixin footer {  
+    display: block;
+    width:100%;
+    height: auto;
+}
+
+/* Footer Sticky */
+@mixin footerStick {
+    /* stick */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+}
+
+/* FAMILIAS */
+@mixin verdana  { font-family: Verdana, Geneva, sans-serif; }
+@mixin arial    { font-family:Arial, Helvetica, sans-serif; }
+@mixin tahoma   { font-family: Tahoma, Geneva, sans-serif;  }
+
+/* Col */
+@mixin col($mar: 0) {
+    @include mar($mar);
+    display: block;
+    clear: both;
+    float: none;
+    width: 100%;
+}
+/* opacity => cross-browser */
+@mixin opacity($valor:0.5) {
+    visibility: visible;
+    -moz-opacity: $valor; /* Netscape */  
+    -khtml-opacity: $valor; /* Safari 1.x */
+    opacity: $valor; /* Good browsers */
+}
+
+/* Borde Redondeado */
+@mixin border-radio($radio: 4px) { 
+    -webkit-border-radius: $radio; 
+    -moz-border-radius: $radio;    
+    border-radius: $radio;
+}
+
+/* Box Shadow */
+@mixin box-shadow ($x: 0px, $y: 0px, $blur: 10px, $spread:0, $color: rgba($black, 0.6)) {
+    -webkit-box-shadow: $x $y $blur $spread $color;
+    -moz-box-shadow:  $x $y $blur $spread $color;
+    box-shadow: $x $y $blur $spread $color;
+}
+/* Box shadow MNultiple */
+@mixin box-shadow-multi ($array1, $array2) {
+    -webkit-box-shadow: $array1, $array2;
+    -moz-box-shadow:  $array1, $array2;
+    box-shadow: $array1, $array2;
+}
+
+/* Box Shadow inset */
+@mixin box-shadow-inset ($x: 0px, $y: 0px, $blur: 5px, $spread:0, $color: $black, $inset: inset){
+    -webkit-box-shadow: $inset $x $y $blur $spread $color;
+    -moz-box-shadow: $inset  $x $y $blur $spread $color;
+    box-shadow: $inset  $x $y $blur $spread $color;
+}
+
+/* Box Shadow none */
+@mixin box-shadow-none  {
+    -webkit-box-shadow:none;
+    -moz-box-shadow:none;
+    box-shadow: none;
+}
+
+/* Transition */
+@mixin transition ($time: 180ms, $prop: all, $ease: ease) {
+    -webkit-transition: $prop $time $ease;
+    -moz-transition: $prop $time $ease;
+    -o-transition: $prop $time $ease;
+    -ms-transition: $prop $time $ease;
+    transition: $prop $time $ease;
+}
+
+/* Transition IMPORTANT */
+@mixin transition-Important ($prop: all, $time: 180ms, $ease: ease) {
+    -webkit-transition: $prop $time $ease !important;
+    -moz-transition: $prop $time $ease !important;
+    -o-transition: $prop $time $ease !important;
+    -ms-transition: $prop $time $ease !important;
+    transition: $prop $time $ease !important;
+}
+
+/* No transition */
+@mixin transition-no {
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    -ms-transition: none;
+    transition: none;
+}
+
+/* Transform = ROTATE(deg) */
+@mixin rotate($deg: 4deg){
+    -webkit-transform: rotate($deg);
+    -moz-transform: rotate($deg);
+    -o-transform: rotate($deg);
+    transform: rotate($deg);
+}
+
+/* Transform = TRANSLATE(X, Y) */
+@mixin translate($x:10px, $y:10px){
+    -moz-transform: translateX($x) translateY($y);
+    -webkit-transform: translateX($x) translateY($y);
+    -o-transform: translateX($x) translateY($y);
+    -ms-transform: translateX($x) translateY($y);
+    transform: translateX($x) translateY($y);
+}
+
+/* Transform = SCALE($valor) */
+@mixin scale($valores)  {
+    -moz-transform: scale($valores);
+    -webkit-transform: scale($valores);
+    -o-transform: scale($valores);
+    -ms-transform: scale($valores);
+    transform: scale($valores);    
+}
+
+/* Transform => ROTATE => SCALE */
+@mixin cssTransform ($rotate:-135deg, $scale: 1) {
+    -moz-transform:    rotate($rotate) scale($scale);
+    -webkit-transform: rotate($rotate) scale($scale);
+    -o-transform:      rotate($rotate) scale($scale);
+    -ms-transform:     rotate($rotate) scale($scale);
+    transform:         rotate($rotate) scale($scale);
+}
+
+/* Transform => ROTATE => translate  */
+@mixin cssTransformX ($rotate:45deg, $translateX: 10px, $translateY:10px) {
+    -moz-transform:    rotate($rotate) translateX($translateX) translateY($translateY);
+    -webkit-transform: rotate($rotate) translateX($translateX) translateY($translateY);
+    -o-transform:      rotate($rotate) translateX($translateX) translateY($translateY);
+    -ms-transform:     rotate($rotate) translateX($translateX) translateY($translateY);
+    transform:         rotate($rotate) translateX($translateX) translateY($translateY);
+}
+
+/* Transform => ROTATE => translate  */
+@mixin scaleTranslate ($scale: 1, $translateX: 10px, $translateY:10px) {
+    -moz-transform:    scale($scale) translateX($translateX) translateY($translateY);
+    -webkit-transform: scale($scale) translateX($translateX) translateY($translateY);
+    -o-transform:      scale($scale) translateX($translateX) translateY($translateY);
+    -ms-transform:     scale($scale) translateX($translateX) translateY($translateY);
+    transform:         scale($scale) translateX($translateX) translateY($translateY);
+}
+
+@mixin Width($per: 100%, $pix: 0) {
+    width: -webkit-calc(#{$per} - #{$pix});
+    width:    -moz-calc(#{$per} - #{$pix});
+    width:         calc(#{$per} - #{$pix});
+}
+
+
+@mixin Height($val: 100%, $pix: 0) {
+    height: -webkit-calc(#{$val} - #{$pix});
+    height:    -moz-calc(#{$val} - #{$pix});
+    height:         calc(#{$val} - #{$pix});
+}
+
+
+/* Transform => Flip */
+
+@mixin animated($time: 1s) {
+
+}
+@mixin Flip {
+
+    @keyframes flipDo {
+        from {
+            transform: perspective(400px) rotate3d(0, 1, 0, -360deg);
+            animation-timing-function: ease-out;
+        }
+
+        40% {
+            transform: perspective(400px) translate3d(0, 0, 50px) rotate3d(0, 1, 0, -190deg);
+            animation-timing-function: ease-out;
+        }
+
+        50% {
+            transform: perspective(400px) translate3d(0, 0, 50px) rotate3d(0, 1, 0, -170deg);
+            animation-timing-function: ease-in;
+        }
+
+        80% {
+            transform: perspective(400px) scale3d(.95, .95, .95);
+            animation-timing-function: ease-in;
+        }
+
+        to {
+            transform: perspective(400px);
+            animation-timing-function: ease-in;
+        }
+    }
+}
+/* Transform => Flip */
+@mixin FlipDo {
+    backface-visibility: visible;
+    animation-name: flipDo;
+    animation-duration: 500ms;
+    animation-fill-mode: both; 
+}
+
+/* Delay Transition */
+@mixin delaY($speed:100ms) {
+    -webkit-transition-delay: $speed; 
+    transition-delay: $speed; 
+}
+
+@mixin column-width($valor) {
+    -webkit-column-width: $valor;
+    -moz-column-width: $valor;
+    column-width: $valor;
+}
+@mixin column-gap($valor) {
+    -webkit-column-gap: $valor;
+    -moz-column-gap: $valor;
+    column-gap: $valor;
+}
+@mixin break-inside($valor) {
+    -webkit-column-break-inside: $valor;
+    page-break-inside: $valor;
+    break-inside: $valor;
+}
+
+/* Gradiente = simple = Orign (top / left / right / bottom) */
+@mixin gradient ($start: #ffffff, $stop: #000000, $origin: bottom) {
+    background-color: $start;
+    background-image: -webkit-linear-gradient($origin, $start, $stop);
+    background-image: -moz-linear-gradient($origin, $start, $stop);
+    background-image: -o-linear-gradient($origin, $start, $stop);
+    background-image: -ms-linear-gradient($origin, $start, $stop);
+    background-image: linear-gradient($origin, $start, $stop);
+}
+
+/* Gradiente = Vertical = TOP / BOTTOM  */
+@mixin gradiente-vertical ($inicio: $white, $fin: $black) {
+    background: $inicio;
+    background: -moz-linear-gradient(top,  $inicio 0%, $fin 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$inicio), color-stop(100%,$fin));
+    background: -webkit-linear-gradient(top,  $inicio 0%,$fin 100%);
+    background: -o-linear-gradient(top,  $inicio 0%,$fin 100%);
+    background: -ms-linear-gradient(top,  $inicio 0%,$fin 100%);
+    background: linear-gradient(to bottom,  $inicio 0%,$fin 100%);
+}
+
+/* Gradiente = Horizontal = LEFT / RIGHT */
+@mixin gradiente-horizontal ($startColor: $black, $endColor: $yellow) { 
+    background-color: $startColor;
+    background-image: -webkit-gradient(linear, left top, right top, from($startColor), to($endColor));
+    background-image: -webkit-linear-gradient(left, $startColor, $endColor);
+    background-image: -moz-linear-gradient(left, $startColor, $endColor);
+    background-image: -ms-linear-gradient(left, $startColor, $endColor);
+    background-image: -o-linear-gradient(left, $startColor, $endColor);
+}
+
+/* Bloquear la seleccion de texto */
+@mixin noSelect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Text-shadow */
+@mixin text-shadow ($string: 0 1px 1px rgba($black, .5)) {
+    text-shadow: $string;
+}
+
+/* Basic Reset */
+@mixin reset {
+    min-width:0;  
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    border: none;
+    font:inherit;
+    vertical-align:baseline;
+    text-transform: none;
+    text-shadow: none;
+    @include border-radio(0);
+    @include box-shadow-none;
+    @include nobg;
+}
+
+/* Listas sin estilo */
+@mixin list-unstyled {
+    list-style:none;
+    @include pad(0);
+    @include mar(0);
+}
+
+/* LISTAS ORDENADAS: OL
+-------------------------
+Parametros:
+
+$ol-textcolor       = color del texto del consecutivo numeral
+$ol-bgcolor         = color del background del consecutivo numeral
+$ol-border-radio    = borde redondeado del elemento como consecutivo numeral
+$ol-font            = font que utiliza el consecutivo numeral
+$ol-top             = position TOP del consecutivo numeral
+$ol-left            = position LEFT del consecutivo numeral
+$ol-pad             = padding del elemento como consecutivo numeral
+$ol-mar             = margen del elemento como consecutivo numeral
+$ol-size            = tamaño del font dentro del elemento como consecutivo numeral
+$ol-weight          = font-weight del font dentro del elemento como consecutivo numeral
+$mar-ol-ol          = margen del segundo **OL**   ol > li > **OL**
+*/
+@mixin ol-li(
+$ol-textcolor: $textcolor, 
+$ol-bgcolor : $colorbase, 
+$ol-border-radio: 4px, 
+$ol-font : $font, 
+$ol-top: -1px, 
+$ol-left: 0, 
+$ol-pad : 1px 5px 2px, 
+$ol-mar : 0 10px 0 0, 
+$ol-size: 10px, 
+$ol-weight : normal, 
+$mar-ol-ol : 10px 0 0 25px
+) {
+    counter-reset:li; 
+    margin:0 0 30px;
+    padding-left:0;
+    > li {
+        list-style: none outside none; 	
+        margin: 0 0 10px 0;
+        padding: 0 0 0 0;	
+        position: relative;	
+        border:none;            
+        &:before {
+            color: $ol-textcolor;
+            background: $ol-bgcolor;
+            content:counter(li, decimal);
+            counter-increment: li;
+            font-family: $ol-font;
+            left: $ol-left;
+            margin: $ol-mar;
+            position: relative;
+            text-align: left;
+            top: $ol-top;
+            padding: $ol-pad;
+            font-size: $ol-size;
+            font-weight: $ol-weight;
+            text-indent:0;
+            @include border-radio($ol-border-radio);
+        }
+        > ol {
+            margin:$mar-ol-ol;
+            li{
+                list-style: decimal inside;	
+                padding:0;	
+                text-indent:0;
+                &:before {
+                    content:normal;
+                    text-indent:0;            
+                }
+            }
+        }
+    }
+}
+
+/* LISTAS NO ORDENADAS: UL
+----------------------------
+Parametros:
+$ul-li-bg       = background (si lleva) del primer <LI> | string | ul-li
+$ul-li-ul-li    = background (si lleva) del segundo <LI> | string | ul-li-ul-li
+$li-pad         = padding del primer <li> | ul-li
+$li-li-pad      = padding del segundo <li> | ul-li-ul-li
+*/
+
+@mixin ul-li(
+$ul-li-bg  : url(../../assets/images/common/ul-li.png) no-repeat 0 3px,
+$ul-li-ul-li: url(../../assets/images/common/ul-li-ul-li.png) no-repeat 0 5px,
+$li-pad:25px, 
+$li-li-pad: 13px
+) {
+    display: block;
+    clear: both;
+    @include pad(0);
+    > li {
+        background: $ul-li-bg;
+        list-style:none;
+        height:auto;
+        margin:0 0 10px;
+        color: inherit;
+        padding-left: $li-pad;
+        ul {
+            margin:10px 0 0;
+            > li {
+                list-style:none;
+                margin:0 0 10px;
+                padding-left:$li-li-pad;
+                color: inherit;
+                background:$ul-li-ul-li;
+            }
+        }
+    }
+}
+
+/* CUSTOM = LISTAS NO ORDENADAS: UL
+---------------------------------------
+Parametros:
+$icono1     = unicode del nuevo icono
+$icono2     = unicode del nuevo icono
+*/
+@mixin customLI($icono1:'\f25b', $icono2:'\f25a', $size: 12px, $color: $gray) {
+    >  li {
+        @include pad(0);
+        @include nobg;
+        &:before {
+            @include awesome(relative);
+            @include aweIcon($icono1);
+            @include mar(0 15px 0 0);
+            @include size($size);
+            top: -1px;
+            color: $color;
+        }
+        > ul {
+            @include mar(15px 0 0 25px);
+            > li {
+                @include pad(0);
+                @include nobg;
+                &:before {
+                    content: none;
+                    @include awesome(relative);
+                    @include aweIcon($icono2);
+                    @include size($size - 4);
+                    @include mar(0 15px 0 0);
+                    top: -3px;
+                    color: $gray;
+                }
+            }
+        }
+    }
+}
+
+/* Centro verticalmente (Método 1) */
+@mixin parentChild($align: center) {
+    display: table;
+    width: 100%;
+    height: 100%;
+    > div {
+        display: table-cell;
+        vertical-align: middle;
+        height: 100%;
+        text-align: $align;
+    }
+}
+
+/* Centro verticalmente (Método 2) */
+@mixin ParentAndChild($align:left) {
+    text-align: $align;
+    white-space: nowrap;
+    height: 100%;
+    font-size: 100%;
+    &:before {
+        content: '';
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+    }
+    > div {
+        display: inline-block;
+        vertical-align: middle;
+        width: 100%;
+    }
+}
+
+/* BLOCKQUOTES
+-------------------------
+Parametros:
+
+$block-img  = imagen del blockquote a la izquierda
+$block-pad  = padding del blockquote | string
+$block-mar  = margen del blockquote | string
+$p-font     = font del parrafo dentro del blockquote
+$p-size     = tamaño de la fuente del parrafo | default: inherit
+$p-pad      = padding del <P> dentro del blockquote
+$p-color    = color del <P> dentro del blockquote | default: $textcolor
+
+*/
+@mixin blockquote(
+/* 1 */ $block-img :url(../images/default/blockquote.png) no-repeat 0 15px,
+/* 2 */ $block-pad: 10px 0 10px 42px,
+/* 3 */ $block-mar: 0 0 20px,
+/* 4 */ $p-font: $font,
+/* 5 */ $p-size: 100%,
+/* 6 */ $p-pad: 0,
+/* 7 */ $p-color: $textcolor
+) {
+    min-height: 50px;  
+    border: none;
+    background: $block-img;
+    @include pad($block-pad);
+    @include mar($block-mar);
+    @include size(100%);
+    p {
+        font-family: $p-font;
+        color: $p-color;
+        @include size($p-size);
+        @include pad($p-pad);
+    }
+    p {
+        strong {
+            color: #333333;
+        }
+    }
+    p + p {
+        strong {
+            @include size(75%);
+            color: $black;
+        }
+    }
+}
+
+
+/* RESPONSIVE IFRAMES / YOUTUBE
+---------------------------------
+Parametros: $aspect = definir el aspecto del iframe | 16:9 | 4:3
+
+*/
+$aspect16_9: 56.25%;
+$aspect4_3 : 75%;
+@mixin ResponsiveIframe($aspect: $aspect16_9) {
+    display: block;
+    width: 100%;
+    float: none;
+    height: auto;
+    position: relative;
+    .elemento-responsivo, > div {
+        position: relative;
+        padding-bottom: $aspect; // Elegir entre 4:3 / 16:9 [variables]
+        height: 0;
+        overflow: hidden;
+        z-index: 8;
+        iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100% !important;
+            height: 100% !important;
+            z-index: 9;
+        }
+    }
+}
+
+/* PLACEHOLDER FORMS
+-------------------------
+Parametros:
+$font-family        = font del placeholder
+$size               = font size del font | default: 100%
+$color:             = color del font del ploceholder | default: gris (#cccccc)
+$transform          = text transform, uppercas, lowercase, etc
+$align              = alineacion del texto: left, right, center, justified
+$weight             = font weight del texto del placeholder
+$style              = estilo del font, italica, normal, oblique
+
+*/
+@mixin placeholder(
+$font-family: $font, 
+$size:100%, 
+$color: $gray, 
+$transform: none, 
+$align: left,
+$weight: normal,
+$style: normal
+){
+    .form-control::-webkit-input-placeholder { 
+        font-family: $font-family; 
+        font-size: $size; 
+        color: $color; 
+        text-transform: $transform; 
+        text-align: $align; 
+        font-weight: $weight; 
+        font-style: $style;
+        opacity: 1;
+    }
+    .form-control:-moz-placeholder           { 
+        font-family: $font-family; 
+        font-size: $size; 
+        color: $color; 
+        text-transform: $transform; 
+        text-align: $align; 
+        font-weight: $weight; 
+        font-style: $style;
+        opacity: 1;}
+    .form-control::-moz-placeholder          {
+        font-family: $font-family; 
+        font-size: $size; 
+        color: $color; 
+        text-transform: $transform; 
+        text-align: $align; 
+        font-weight: $weight; 
+        font-style: $style;
+        opacity: 1;}
+    .form-control:-ms-input-placeholder      {
+        font-family: $font-family; 
+        font-size: $size; 
+        color: $color; 
+        text-transform: $transform; 
+        text-align: $align; 
+        font-weight: $weight; 
+        font-style: $style;
+        opacity: 1;
+    }
+}
+
+/* Cambiar breakpoint
+-------------------------
+insertar el mixin dentro de un mediaquery
+*/
+@mixin breakpoint {
+    .navbar-header { float: none }
+    .navbar-left, .navbar-right { float: none !important }
+    .navbar-toggle { display: block }
+    .navbar-collapse { border-top: 1px solid transparent; box-shadow: inset 0 1px 0 rgba(255,255,255,0.1); }
+    .navbar-fixed-top { top: 0; border-width: 0 0 1px; }
+    .navbar-collapse.collapse { display: none!important }
+    .navbar-nav { float: none!important; margin-top: 7.5px; }
+    .navbar-nav>li { float: none }
+    .navbar-nav>li>a { padding-top: 10px; padding-bottom: 10px; }
+    .collapse.in { display: block !important }
+}
+
+
+/* New Breakpoint
+-------------------------
+*/
+@mixin navBreak($min: 768px, $max: 900px) {
+    @media (min-width: $min) and (max-width: $max) {
+        .navbar-collapse.collapse {
+            display: none !important;
+        }
+
+        .navbar-collapse.collapse.in {
+            display: block !important;
+        }
+
+        .navbar-header .collapse, .navbar-toggle {
+            display: block !important;
+        }
+
+        .navbar-header {
+            float: none;
+        }
+
+        /*
+
+            The changes start from here:
+
+        */
+
+        .navbar-right {
+            float: none !important;
+        }
+
+        .navbar-nav > li {
+            float: none;
+        }
+
+        .navbar-nav > li > a {
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        .navbar-collapse {
+            -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1);
+        }
+
+        .container-fluid > .navbar-collapse {
+            margin-right: -15px;
+            margin-left: -15px;
+        }
+
+        .container-fluid > .navbar-header {
+            margin-right: -15px;
+            margin-left: -15px;
+        }
+    }
+}
